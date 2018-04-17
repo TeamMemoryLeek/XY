@@ -1,11 +1,15 @@
-#include <core/Window.h>
+#include <core/XY.h>
 
 int main(int argc, char* argv[])
 {
-	xy::Window window(800, 600, "XY Framework");
+	xy::Window* window = xy::createWindow(800, 600, "XY Framework");
 
-	while (1)
+	while (xy::shouldRun())
 	{
+		xy::clearScreen();
 
+		xy::finalizeRendering();
 	}
+
+	xy::destroyWindow(window);
 }

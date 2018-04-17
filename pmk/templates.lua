@@ -17,6 +17,7 @@ end
 function templates.project(name)
 	project (name)
 
+	characterset "Unicode"
 	location "../sln/%{wks.name}/"
 	objdir "../obj/"
 	targetdir "../bin/"

@@ -23,4 +23,15 @@ void destroyWindow(Window* window)
 	delete canvas;
 }
 
+bool shouldRun()
+{
+	// TODO: Check if user has pressed exit
+	return false;
+}
+
+void finalizeRendering()
+{
+	// TODO: Blit canvas to backbuffer
+}
+
 }

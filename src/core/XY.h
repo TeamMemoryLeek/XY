@@ -8,22 +8,17 @@
 namespace xy
 {
 
-// Creates window and sets up canvas
-Window* createWindow(
-	uint32_t width, 
-	uint32_t height,
-	const std::wstring& title);
+struct Core
+{
+	static void initialize(
+		uint32_t width, 
+		uint32_t height, 
+		const std::wstring& title);
+	static void finalize();
 
-// Destroys window and canvas
-void destroyWindow(Window* window);
+	static bool shouldRun();
 
-// Checks if user has pressed the exit button
-bool shouldRun();
-
-// Call this at the start of your rendering loop
-void clearScreen();
-
-// Call this function at the end of your rendering loop
-void finalizeRendering();
+	static void finalizeRendering();
+};
 
 }

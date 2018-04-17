@@ -4,39 +4,26 @@
 namespace xy
 {
 
-static Window* window = nullptr;
-static Canvas* canvas = nullptr;
-
-Window* createWindow(
+void Core::initialize(
 	uint32_t width, 
-	uint32_t height,
+	uint32_t height, 
 	const std::wstring& title)
 {
-	canvas = new Canvas(width, height);
-	window = new Window(width, height, title);
-	return window;
+
 }
 
-void destroyWindow(Window* window)
+void Core::finalize()
 {
-	delete window;
-	delete canvas;
+
 }
 
-bool shouldRun()
+bool Core::shouldRun()
 {
-	// TODO: Check if user has pressed exit
 	return false;
 }
 
-void clearScreen()
+void Core::finalizeRendering()
 {
-	// TODO: Clear screen
-}
-
-void finalizeRendering()
-{
-	// TODO: Blit canvas to backbuffer
 }
 
 }

@@ -2,14 +2,13 @@
 
 int main(int argc, char* argv[])
 {
-	xy::Window* window = xy::createWindow(800, 600, L"XY Framework");
+	xy::Core::initialize(800, 600, L"XY Framework");
 
-	while (xy::shouldRun())
+	while (xy::Core::shouldRun())
 	{
-		xy::clearScreen();
 
-		xy::finalizeRendering();
+		xy::Core::finalizeRendering();
 	}
 
-	xy::destroyWindow(window);
+	xy::Core::finalize();
 }

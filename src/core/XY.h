@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Window.h"
-
 #include <string>
 #include <stdint.h>
 

@@ -3,6 +3,8 @@
 namespace xy
 {
 
+HWND Window::_hwnd;
+
 LRESULT CALLBACK wndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {
 	switch (msg)
@@ -31,7 +33,7 @@ void Window::initialize(uint32_t width, uint32_t height, const std::wstring& tit
 	static uint32_t window_uid = 0;
 	std::wstring    window_name = L"XYWindow" + std::to_wstring(window_uid++);
 
-	m_hwnd = CreateWindowExW(
+	_hwnd = CreateWindowExW(
 		WS_EX_OVERLAPPEDWINDOW,
 		L"XYWindowClass",
 		window_name.c_str(),
@@ -43,12 +45,12 @@ void Window::initialize(uint32_t width, uint32_t height, const std::wstring& tit
 		nullptr
 	);
 
-	ShowWindow(m_hwnd, SW_SHOW);
+	ShowWindow(_hwnd, SW_SHOW);
 }
 
 void Window::finalize()
 {
-	DestroyWindow(m_hwnd);
+	DestroyWindow(_hwnd);
 }
 
 }

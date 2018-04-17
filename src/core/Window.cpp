@@ -25,11 +25,11 @@ static ATOM registerClass()
 	return RegisterClassExW(&desc);
 }
 
-Window::Window(uint32_t width, uint32_t height, const std::wstring& title)
+void Window::initialize(uint32_t width, uint32_t height, const std::wstring& title)
 {
 	static ATOM     window_class = registerClass();
-	static uint32_t window_uid   = 0;
-	std::wstring    window_name  = L"XYWindow" + std::to_wstring(window_uid++);
+	static uint32_t window_uid = 0;
+	std::wstring    window_name = L"XYWindow" + std::to_wstring(window_uid++);
 
 	m_hwnd = CreateWindowExW(
 		WS_EX_OVERLAPPEDWINDOW,
@@ -46,7 +46,7 @@ Window::Window(uint32_t width, uint32_t height, const std::wstring& title)
 	ShowWindow(m_hwnd, SW_SHOW);
 }
 
-Window::~Window()
+void Window::finalize()
 {
 	DestroyWindow(m_hwnd);
 }

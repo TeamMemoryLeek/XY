@@ -9,11 +9,10 @@ namespace xy
 class Window
 {
 public:
-	Window(uint32_t width, uint32_t height, const std::wstring& title);
-	~Window();
-
+	static void initialize(uint32_t width, uint32_t height, const std::wstring& title);
+	static void finalize();
 private:
-	HWND m_hwnd;
+	static HWND m_hwnd;
 };
 
 }

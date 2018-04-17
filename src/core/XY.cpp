@@ -1,20 +1,42 @@
 #include "XY.h"
+#include "Canvas.h"
 
 namespace xy
 {
 
+static Window* window = nullptr;
+static Canvas* canvas = nullptr;
+
 Window* createWindow(
 	unsigned int width, 
 	unsigned int height,
-	std::string& title)
+	const std::string& title)
 {
-	// TODO: Create and return window
-	return nullptr;
+	canvas = new Canvas(width, height);
+	window = new Window(width, height, title);
+	return window;
 }
 
 void destroyWindow(Window* window)
 {
-	// TODO: Destroy window
+	delete window;
+	delete canvas;
+}
+
+bool shouldRun()
+{
+	// TODO: Check if user has pressed exit
+	return false;
+}
+
+void clearScreen()
+{
+	// TODO: Clear screen
+}
+
+void finalizeRendering()
+{
+	// TODO: Blit canvas to backbuffer
 }
 
 }

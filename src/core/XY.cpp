@@ -10,7 +10,7 @@ static Canvas* canvas = nullptr;
 Window* createWindow(
 	unsigned int width, 
 	unsigned int height,
-	std::string& title)
+	const std::string& title)
 {
 	canvas = new Canvas(width, height);
 	window = new Window(width, height, title);
@@ -27,6 +27,11 @@ bool shouldRun()
 {
 	// TODO: Check if user has pressed exit
 	return false;
+}
+
+void clearScreen()
+{
+	// TODO: Clear screen
 }
 
 void finalizeRendering()

@@ -6,6 +6,19 @@ t.project("Core")
 	kind "StaticLib"
 	targetname "XYCore"
 	files {
-		"code/**.cpp",
-		"code/**.h",
+		"core/**.cpp",
+		"core/**.h",
+	}
+
+group "Demos"
+
+t.project("Framework")
+	kind "ConsoleApp"
+	targetname "XYFramework"
+	files {
+		"demos/framework/**.cpp",
+		"demos/framework/**.h",
+	}
+	links {
+		"Core",
 	}

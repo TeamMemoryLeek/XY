@@ -25,6 +25,9 @@ function templates.project(name)
 	flags {
 		"MultiProcessorCompile",
 	}
+	includedirs {
+		"./",
+	}
 
 	filter {"configurations:Debug"}
 		defines {

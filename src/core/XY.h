@@ -3,14 +3,15 @@
 #include "Window.h"
 
 #include <string>
+#include <stdint.h>
 
 namespace xy
 {
 
 // Creates window and sets up canvas
 Window* createWindow(
-	unsigned int width, 
-	unsigned int height, 
+	uint32_t width, 
+	uint32_t height,
 	const std::wstring& title);
 
 // Destroys window and canvas

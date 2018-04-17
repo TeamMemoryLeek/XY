@@ -1,0 +1,25 @@
+version: 1.0.{build}
+
+max_jobs: 4
+image: Visual Studio 2017
+clone_folder: C:\XY
+shallow_clone: false
+clone_depth: 5
+
+matrix:
+  fast_finish: true
+
+install:
+  - cmd: cd C:\XY & call .\generate_project_files.bat
+
+platform:
+  - Win32
+  - x64
+
+configuration:
+  - Debug
+  - Release
+
+build:
+  parallel: true
+  project: sln\XY.sln

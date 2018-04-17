@@ -1,11 +1,11 @@
 #pragma once
 
+#include "Color.h"
+
 #include <stdint.h>
 
 namespace xy
 {
-
-typedef unsigned int Pixel;
 
 class Canvas
 {

@@ -6,8 +6,9 @@
 namespace xy
 {
 
-struct Core
+class Core
 {
+public:
 	static void initialize(
 		uint32_t width, 
 		uint32_t height, 

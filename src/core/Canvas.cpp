@@ -3,14 +3,18 @@
 namespace xy
 {
 
-Canvas::Canvas(unsigned int width, unsigned int height)
-	: _width(width)
-	, _height(height)
+uint32_t Canvas::_width = 0;
+uint32_t Canvas::_height = 0;
+Pixel* Canvas::_pixels = nullptr;
+
+void Canvas::initialize(uint32_t width, uint32_t height)
 {
-	_pixels = new Pixel[width * height];
+	_width = width;
+	_height = height;
+	_pixels = new Pixel[width * height];;
 }
 
-Canvas::~Canvas()
+void Canvas::finalize()
 {
 	delete _pixels;
 }

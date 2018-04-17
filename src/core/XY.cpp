@@ -8,8 +8,8 @@ static Window* window = nullptr;
 static Canvas* canvas = nullptr;
 
 Window* createWindow(
-	unsigned int width, 
-	unsigned int height,
+	uint32_t width, 
+	uint32_t height,
 	const std::string& title)
 {
 	canvas = new Canvas(width, height);

@@ -52,16 +52,16 @@ xy::Colorf colorByteToFloat(const Color& in)
 
 Pixel colorByteToPixel(const Color& in)
 {
-	return in.r << 24 | in.g << 16 | in.b << 8 | in.a;
+	return in.a << 24 | in.r << 16 | in.g << 8 | in.b;
 }
 
 Color colorPixelToByte(const Pixel& in)
 {
 	return Color(
-		(in >> 24) & 255,
+		in & 255,
 		(in >> 16) & 255,
 		(in >> 8) & 255,
-		in & 255);
+		(in >> 24) & 255);
 }
 
 }

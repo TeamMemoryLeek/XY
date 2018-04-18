@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "Canvas.h"
 #include "Keyboard.h"
+#include "Time.h"
 
 namespace xy
 {
@@ -21,6 +22,7 @@ void Core::initialize(
 	Canvas::initialize(canvasWidth, canvasHeight);
 	Keyboard::initialize();
 	Window::keyCallback = Keyboard::keyCallback;
+	Time::initialize();
 }
 
 void Core::finalize()
@@ -31,6 +33,7 @@ void Core::finalize()
 
 bool Core::update()
 {
+	Time::update();
 	Keyboard::update();
 	return Window::pollEvents();
 }

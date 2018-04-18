@@ -7,6 +7,8 @@ namespace xy
 
 typedef unsigned int Pixel;
 
+struct Colorf;
+
 // Color struct that uses 4 bytes to represent RGBA
 // Range 0 - 255
 struct Color
@@ -16,7 +18,9 @@ public:
 		unsigned char r,
 		unsigned char g,
 		unsigned char b,
-		unsigned char a);
+		unsigned char a = 0);
+
+	Color(const Colorf& other);
 
 	unsigned char r;
 	unsigned char g;
@@ -42,7 +46,7 @@ struct Colorf
 	float r;
 	float g;
 	float b;
-	float a;
+	float a = 0.0f;
 };
 
 // Coverts from a Colorf to a Color

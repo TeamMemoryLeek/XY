@@ -16,7 +16,7 @@ Color::Color(
 	unsigned char r, 
 	unsigned char g, 
 	unsigned char b, 
-	unsigned char a)
+	unsigned char a /*= 0*/)
 	: r(r)
 	, g(g)
 	, b(b)
@@ -24,7 +24,12 @@ Color::Color(
 {
 }
 
-Colorf::Colorf(float r, float g, float b, float a)
+Color::Color(const Colorf& other)
+{
+	*this = colorFloatToByte(other);
+}
+
+Colorf::Colorf(float r, float g, float b, float a /*= 0.0f*/)
 	: r(r)
 	, g(g)
 	, b(b)

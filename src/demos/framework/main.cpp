@@ -2,6 +2,7 @@
 #include <core/Canvas.h>
 #include <core/Color.h>
 #include <core/Vector2.h>
+#include <core/Keyboard.h>
 
 int main(int argc, char* argv[])
 {
@@ -9,12 +10,24 @@ int main(int argc, char* argv[])
 
 	const int WIDTH = 800;
 	const int HEIGHT = 600;
-	Core::initialize(WIDTH, HEIGHT, L"XY Framework", WIDTH / 16, HEIGHT / 16);
+	Core::initialize(WIDTH, HEIGHT, L"XY Framework", WIDTH, HEIGHT);
+
+	float x = 0.0f;
+	float y = 0.0f;
 
 	while (Core::update())
 	{
 		Canvas::clear(Color(255, 0, 255));
-		Canvas::drawPixel(16, 16, Color::black);
+		if (Keyboard::getKeyDown('W')) 
+			y--;
+		if (Keyboard::getKeyDown('S'))
+			y++;
+		if (Keyboard::getKeyDown('A'))
+			x--;
+		if (Keyboard::getKeyDown('D'))
+			x++;
+
+		Canvas::drawRectangle((int)x * 100, (int)y * 100, 100, 100, Color::black);
 		Core::finalizeRendering();
 	}
 

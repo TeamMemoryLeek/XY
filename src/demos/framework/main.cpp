@@ -6,9 +6,8 @@ int main(int argc, char* argv[])
 {
 	xy::Core::initialize(800, 600, L"XY Framework");
 
-	while (xy::Core::shouldRun())
+	while (xy::Core::update())
 	{
-		xy::Core::update();
 		xy::Canvas::drawRectangle(200, 200, 50, 50, xy::Color::magenta);
 		xy::Core::finalizeRendering();
 	}

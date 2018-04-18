@@ -21,17 +21,16 @@ void Canvas::finalize()
 
 void Canvas::drawRectangle(int x, int y, int width, int height, Color color)
 {
-	for (uint32_t ypix = y; ypix < y + height; ypix++)
+	for (int ypix = y; ypix < y + height; ypix++)
 	{
 		if (ypix < 0) continue;
-		if (ypix >= _height) break;
+		if ((uint32_t)ypix >= _height) break;
 
-		for (uint32_t xpix = x; xpix < x + width; xpix++)
+		for (int xpix = x; xpix < x + width; xpix++)
 		{
 			if (xpix < 0) continue;
-			if (xpix >= _width) break;
+			if ((uint32_t)xpix >= _width) break;
 
-			// TODO: Fix color format
 			_pixels[xpix + ypix * _width] = colorByteToPixel(color);
 		}
 	}

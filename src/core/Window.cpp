@@ -12,9 +12,13 @@ LRESULT CALLBACK wndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {
 	switch (msg)
 	{
-	default:
-		return DefWindowProcW(hwnd, msg, wparam, lparam);
+	case WM_CLOSE:
+		DestroyWindow(hwnd);
+		PostQuitMessage(0);
+		break;
 	}
+
+	return DefWindowProcW(hwnd, msg, wparam, lparam);
 }
 
 static ATOM registerClass()
@@ -61,7 +65,7 @@ void Window::finalize()
 	DestroyWindow(_hwnd);
 }
 
-void Window::pollEvents()
+bool Window::pollEvents()
 {
 	MSG msg = {};
 
@@ -69,6 +73,9 @@ void Window::pollEvents()
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
+
+		if (msg.message == WM_QUIT)
+			return false;
 	}
 
 	while (PeekMessageA(&msg, _hwnd, 0, 0, PM_REMOVE))
@@ -76,6 +83,8 @@ void Window::pollEvents()
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
+
+	return true;
 }
 
 void Window::drawToWindow(HBITMAP& map)

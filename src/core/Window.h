@@ -12,7 +12,7 @@ private:
 	static void initialize(uint32_t width, uint32_t height, const std::wstring& title);
 	static void finalize();
 
-	static void pollEvents();
+	static bool pollEvents();
 	static void drawToWindow(HBITMAP& map);
 
 	static HWND _hwnd;

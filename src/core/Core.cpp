@@ -20,14 +20,9 @@ void Core::finalize()
 	Window::finalize();
 }
 
-bool Core::shouldRun()
+bool Core::update()
 {
-	return true;
-}
-
-void Core::update()
-{
-	Window::pollEvents();
+	return Window::pollEvents();
 }
 
 void Core::finalizeRendering()

@@ -27,13 +27,18 @@ public:
 	// ...
 
 	// Clears the screen using the specified color
-	static void clear(Color clearColor);
+	static void clear(const Color& clearColor);
 
 	// Draw a pixel at 
-	static void drawPixel(int x, int y, Color color);
+	static void drawPixel(int x, int y, const Color& color);
 
 	// Draws a rectangle at (x, y)
-	static void drawRectangle(int x, int y, int width, int height, Color color);
+	static void drawRectangle(
+		int x, 
+		int y, 
+		int width, 
+		int height, 
+		const Color& color);
 };
 
 }

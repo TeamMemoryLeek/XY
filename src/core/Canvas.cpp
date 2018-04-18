@@ -19,23 +19,31 @@ void Canvas::finalize()
 	delete _pixels;
 }
 
-void Canvas::clear(Color clearColor)
+void Canvas::clear(const Color& clearColor)
 {
-	for (int i = 0; i < _width * _height; i++)
+	const Pixel p = colorByteToPixel(clearColor);
+	for (uint32_t i = 0; i < _width * _height; i++)
 	{
-		_pixels[i] = colorByteToPixel(clearColor);
+		_pixels[i] = p;
 	}
 }
 
-void Canvas::drawPixel(int x, int y, Color color)
+void Canvas::drawPixel(int x, int y, const Color& color)
 {
-	if (x < 0 || x >= _width || y < 0 || y >= _height)
+	if (x < 0 || x >= (int)_width || y < 0 || y >= (int)_height)
 		return;
 	_pixels[x + y * _width] = colorByteToPixel(color);
 }
 
-void Canvas::drawRectangle(int x, int y, int width, int height, Color color)
+void Canvas::drawRectangle(
+	int x, 
+	int y, 
+	int width, 
+	int height, 
+	const Color& color)
 {
+	const Pixel p = colorByteToPixel(color);
+
 	for (int ypix = y; ypix < y + height; ypix++)
 	{
 		if (ypix < 0) continue;
@@ -46,7 +54,7 @@ void Canvas::drawRectangle(int x, int y, int width, int height, Color color)
 			if (xpix < 0) continue;
 			if ((uint32_t)xpix >= _width) break;
 
-			_pixels[xpix + ypix * _width] = colorByteToPixel(color);
+			_pixels[xpix + ypix * _width] = p;
 		}
 	}
 }

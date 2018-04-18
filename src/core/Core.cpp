@@ -8,10 +8,16 @@ namespace xy
 void Core::initialize(
 	uint32_t width, 
 	uint32_t height, 
-	const std::wstring& title)
+	const std::wstring& title,
+	uint32_t canvasWidth /*= 0*/,
+	uint32_t canvasHeight /*= 0*/)
 {
 	Window::initialize(width, height, title);
-	Canvas::initialize(width, height);
+	if (canvasWidth == 0)
+		canvasWidth = width;
+	if (canvasHeight == 0)
+		canvasHeight = height;
+	Canvas::initialize(canvasWidth, canvasHeight);
 }
 
 void Core::finalize()
@@ -34,7 +40,7 @@ void Core::finalizeRendering()
 		8 * 4, 
 		(void*)Canvas::_pixels);
 
-	Window::drawToWindow(map);
+	Window::drawToWindow(map, Canvas::_width, Canvas::_height);
 }
 
 }

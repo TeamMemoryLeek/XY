@@ -87,11 +87,12 @@ bool Window::pollEvents()
 	return true;
 }
 
-void Window::drawToWindow(HBITMAP& map)
+void Window::drawToWindow(HBITMAP& map, uint32_t width, uint32_t height)
 {
 	HDC src = CreateCompatibleDC(_hdc);
 	SelectObject(src, map);
-	BitBlt(
+
+	StretchBlt(
 		_hdc,
 		0,
 		0,
@@ -100,6 +101,8 @@ void Window::drawToWindow(HBITMAP& map)
 		src,
 		0,
 		0,
+		width,
+		height,
 		SRCCOPY);
 
 	DeleteDC(src);

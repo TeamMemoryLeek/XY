@@ -13,7 +13,7 @@ private:
 	static void finalize();
 
 	static bool pollEvents();
-	static void drawToWindow(HBITMAP& map);
+	static void drawToWindow(HBITMAP& map, uint32_t width, uint32_t height);
 
 	static HWND _hwnd;
 	static HDC _hdc;

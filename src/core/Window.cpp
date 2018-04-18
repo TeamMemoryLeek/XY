@@ -82,7 +82,14 @@ void Window::drawToWindow(HBITMAP& map)
 void Window::pollEvents()
 {
 	MSG msg = {};
-	while (GetMessage(&msg, NULL, 0, 0))
+
+	while (PeekMessageA(&msg, HWND_DESKTOP, 0, 0, PM_REMOVE))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+
+	while(PeekMessageA(&msg, _hwnd, 0, 0, PM_REMOVE))
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);

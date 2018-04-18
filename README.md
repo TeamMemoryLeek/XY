@@ -9,9 +9,9 @@ XY is a lightweight 2D-library for C++. It's primarily made to be a simple libra
 - Window creation
 - Simple geometrical rendering
 - Simple 2D-vector math
+- Low resolution rendering
 
 #### Planned
-- Low resolution rendering
 - BMP IO and 'sprite' rendering
 - Z-buffer rendering
 - WAV IO and playback

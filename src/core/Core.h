@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Image.h"
+
 #include <string>
 #include <stdint.h>
 
@@ -23,6 +25,9 @@ public:
 	static bool update();
 
 	static void finalizeRendering();
+
+	static Image* loadImage(const std::string& path);
+	static void destroyImage(Image* image);
 };
 
 }

@@ -15,6 +15,7 @@ group "Demos"
 t.project("Framework")
 	kind "ConsoleApp"
 	targetname "XYFramework"
+	debugdir "../res/"
 	files {
 		"demos/framework/**.cpp",
 		"demos/framework/**.h",

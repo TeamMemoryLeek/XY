@@ -49,4 +49,17 @@ void Core::finalizeRendering()
 	DeleteObject(map);
 }
 
+Image* Core::loadImage(const std::string& path)
+{
+	Image* image = new Image;
+	image->loadFromFile(path);
+	return image;
+	// TODO: Cache image and destroy automatically
+}
+
+void Core::destroyImage(Image* image)
+{
+	delete image;
+}
+
 }

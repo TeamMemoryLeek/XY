@@ -9,12 +9,12 @@ int main(int argc, char* argv[])
 
 	const int WIDTH = 800;
 	const int HEIGHT = 600;
-	Core::initialize(WIDTH, HEIGHT, L"XY Framework");
+	Core::initialize(WIDTH, HEIGHT, L"XY Framework", WIDTH / 16, HEIGHT / 16);
 
 	while (Core::update())
 	{
-		Canvas::clear(Color(200, 240, 255));
-		Canvas::drawRectangle(200, 200, 50, 50, Color::magenta);
+		Canvas::clear(Color(255, 0, 255));
+		Canvas::drawPixel(16, 16, Color::black);
 		Core::finalizeRendering();
 	}
 

@@ -101,7 +101,7 @@ void Window::drawToWindow(HBITMAP& map, uint32_t width, uint32_t height)
 	HDC src = CreateCompatibleDC(_hdc);
 	SelectObject(src, map);
 
-	/*StretchBlt(
+	StretchBlt(
 		_hdc,
 		0,
 		0,
@@ -112,17 +112,6 @@ void Window::drawToWindow(HBITMAP& map, uint32_t width, uint32_t height)
 		0,
 		width,
 		height,
-		SRCCOPY);*/
-
-	BitBlt(
-		_hdc,
-		0,
-		0,
-		_width,
-		_height,
-		src,
-		0,
-		0,
 		SRCCOPY);
 
 	DeleteDC(src);

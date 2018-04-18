@@ -24,7 +24,6 @@ private:
 
 	uint32_t _width;
 	uint32_t _height;
-	unsigned char* _data;
 
 	friend class Canvas;
 	friend class Core;

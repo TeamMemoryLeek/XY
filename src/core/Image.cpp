@@ -12,7 +12,7 @@ Image::Image()
 Image::~Image()
 {
 	// TODO: Deallocate
-	delete _data;
+	delete _pixels;
 }
 
 void Image::loadFromFile(const std::string& path)
@@ -20,6 +20,7 @@ void Image::loadFromFile(const std::string& path)
 	unsigned char header[54];
 	unsigned int dataPos;
 	unsigned int imageSize;
+	unsigned char* data;
 
 	FILE* file = fopen(path.c_str(), "rb");
 	if (!file)
@@ -45,9 +46,19 @@ void Image::loadFromFile(const std::string& path)
 	imageSize = _width * _height * 3;
 	if (dataPos == 0) dataPos = 54;
 
-	_data = new unsigned char[imageSize];
+	data = new unsigned char[imageSize];
+	fread(data, 1, imageSize, file);
+	_pixels = new Pixel[_width * _height];
+
+	for (int i = 0; i < _width * _height; i++)
+	{
+		int b = data[i * 3 + 0];
+		int g = data[i * 3 + 1];
+		int r = data[i * 3 + 2];
+		_pixels[i] = 255 << 24 | r << 16 | g << 8 | b;
+	}
 	
-	fread(_data, 1, imageSize, file);
+	delete data;
 
 	fclose(file);
 }

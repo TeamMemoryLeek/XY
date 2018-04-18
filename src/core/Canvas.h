@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Color.h"
+#include "Image.h"
 
 #include <stdint.h>
 
@@ -39,6 +40,8 @@ public:
 		int width, 
 		int height, 
 		const Color& color);
+
+	static void drawImage(int x, int y, Image* image);
 };
 
 }

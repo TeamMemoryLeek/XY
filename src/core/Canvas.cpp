@@ -59,4 +59,27 @@ void Canvas::drawRectangle(
 	}
 }
 
+void Canvas::drawImage(int x, int y, Image* image)
+{
+	const int width = image->getWidth();
+	const int height = image->getHeight();
+
+	for (int ypix = 0; ypix < height; ypix++)
+	{
+		int yy = y + ypix;
+		if (yy < 0) continue;
+		if ((uint32_t)yy >= _height) break;
+
+		for (int xpix = 0; xpix < width; xpix++)
+		{
+			int xx = x + xpix;
+			if (xx < 0) continue;
+			if ((uint32_t)xx >= _width) break;
+
+			_pixels[xx + yy * _width] = image->_pixels[
+				xpix + ypix * width];
+		}
+	}
+}
+
 }

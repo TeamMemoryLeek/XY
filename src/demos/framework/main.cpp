@@ -1,4 +1,6 @@
 #include <core/Core.h>
+#include <core/Canvas.h>
+#include <core/Color.h>
 
 int main(int argc, char* argv[])
 {
@@ -6,7 +8,7 @@ int main(int argc, char* argv[])
 
 	while (xy::Core::shouldRun())
 	{
-
+		xy::Canvas::drawRectangle(0, 0, 800, 600, xy::Color::blue);
 		xy::Core::finalizeRendering();
 	}
 

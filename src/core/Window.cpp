@@ -61,6 +61,23 @@ void Window::finalize()
 	DestroyWindow(_hwnd);
 }
 
+void Window::pollEvents()
+{
+	MSG msg = {};
+
+	while (PeekMessageA(&msg, HWND_DESKTOP, 0, 0, PM_REMOVE))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+
+	while (PeekMessageA(&msg, _hwnd, 0, 0, PM_REMOVE))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+}
+
 void Window::drawToWindow(HBITMAP& map)
 {
 	HDC src = CreateCompatibleDC(_hdc);
@@ -77,23 +94,6 @@ void Window::drawToWindow(HBITMAP& map)
 		SRCCOPY);
 
 	DeleteDC(src);
-}
-
-void Window::pollEvents()
-{
-	MSG msg = {};
-
-	while (PeekMessageA(&msg, HWND_DESKTOP, 0, 0, PM_REMOVE))
-	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
-	}
-
-	while(PeekMessageA(&msg, _hwnd, 0, 0, PM_REMOVE))
-	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
-	}
 }
 
 }

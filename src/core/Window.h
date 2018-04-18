@@ -12,8 +12,8 @@ private:
 	static void initialize(uint32_t width, uint32_t height, const std::wstring& title);
 	static void finalize();
 
-	static void drawToWindow(HBITMAP& map);
 	static void pollEvents();
+	static void drawToWindow(HBITMAP& map);
 
 	static HWND _hwnd;
 	static HDC _hdc;

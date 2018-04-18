@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 	while (xy::Core::shouldRun())
 	{
 		xy::Core::update();
-		xy::Canvas::drawRectangle(0, 0, 800, 600, xy::Color::magenta);
+		xy::Canvas::drawRectangle(200, 200, 50, 50, xy::Color::magenta);
 		xy::Core::finalizeRendering();
 	}
 

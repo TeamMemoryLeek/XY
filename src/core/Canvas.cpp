@@ -21,12 +21,12 @@ void Canvas::finalize()
 
 void Canvas::drawRectangle(int x, int y, int width, int height, Color color)
 {
-	for (uint32_t ypix = y; ypix < _height; ypix++)
+	for (uint32_t ypix = y; ypix < y + height; ypix++)
 	{
 		if (ypix < 0) continue;
 		if (ypix >= _height) break;
 
-		for (uint32_t xpix = x; xpix < _width; xpix++)
+		for (uint32_t xpix = x; xpix < x + width; xpix++)
 		{
 			if (xpix < 0) continue;
 			if (xpix >= _width) break;

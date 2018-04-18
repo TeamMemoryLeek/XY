@@ -46,7 +46,7 @@ void Core::finalizeRendering()
 
 	Window::drawToWindow(map, Canvas::_width, Canvas::_height);
 
-	
+	DeleteObject(map);
 }
 
 }

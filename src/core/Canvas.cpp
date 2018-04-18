@@ -6,6 +6,7 @@ namespace xy
 uint32_t Canvas::_width = 0;
 uint32_t Canvas::_height = 0;
 Pixel* Canvas::_pixels = nullptr;
+Color Canvas::_transparentColor = Color::magenta;
 
 void Canvas::initialize(uint32_t width, uint32_t height)
 {
@@ -17,6 +18,11 @@ void Canvas::initialize(uint32_t width, uint32_t height)
 void Canvas::finalize()
 {
 	delete _pixels;
+}
+
+void Canvas::setTransparencyColor(const Color& color)
+{
+	_transparentColor = color;
 }
 
 void Canvas::clear(const Color& clearColor)
@@ -76,8 +82,10 @@ void Canvas::drawImage(int x, int y, Image* image)
 			if (xx < 0) continue;
 			if ((uint32_t)xx >= _width) break;
 
-			_pixels[xx + yy * _width] = image->_pixels[
-				xpix + ypix * width];
+			Pixel p = image->_pixels[xpix + ypix * width];
+			if (p == colorByteToPixel(_transparentColor))
+				continue;
+			_pixels[xx + yy * _width] = p;
 		}
 	}
 }

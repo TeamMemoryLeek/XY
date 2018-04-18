@@ -17,6 +17,7 @@ private:
 	static uint32_t _width;
 	static uint32_t _height;
 	static Pixel* _pixels;
+	static Color _transparentColor;
 
 	friend class Core;
 
@@ -26,6 +27,8 @@ public:
 	// drawRectangle
 	// drawCircle
 	// ...
+
+	static void setTransparencyColor(const Color& color);
 
 	// Clears the screen using the specified color
 	static void clear(const Color& clearColor);

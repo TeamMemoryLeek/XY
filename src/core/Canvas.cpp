@@ -27,6 +27,13 @@ void Canvas::clear(Color clearColor)
 	}
 }
 
+void Canvas::drawPixel(int x, int y, Color color)
+{
+	if (x < 0 || x >= _width || y < 0 || y >= _height)
+		return;
+	_pixels[x + y * _width] = colorByteToPixel(color);
+}
+
 void Canvas::drawRectangle(int x, int y, int width, int height, Color color)
 {
 	for (int ypix = y; ypix < y + height; ypix++)

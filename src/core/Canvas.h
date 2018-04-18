@@ -29,7 +29,10 @@ public:
 	// Clears the screen using the specified color
 	static void clear(Color clearColor);
 
-	// Draws a rectangle with its center at (x, y)
+	// Draw a pixel at 
+	static void drawPixel(int x, int y, Color color);
+
+	// Draws a rectangle at (x, y)
 	static void drawRectangle(int x, int y, int width, int height, Color color);
 };
 

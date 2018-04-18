@@ -31,6 +31,7 @@ void Canvas::drawRectangle(int x, int y, int width, int height, Color color)
 			if (xpix < 0) continue;
 			if (xpix >= _width) break;
 
+			// TODO: Fix color format
 			_pixels[xpix + ypix * _width] = colorByteToPixel(color);
 		}
 	}

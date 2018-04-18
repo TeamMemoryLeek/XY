@@ -79,5 +79,15 @@ void Window::drawToWindow(HBITMAP& map)
 	DeleteDC(src);
 }
 
+void Window::pollEvents()
+{
+	MSG msg = {};
+	while (GetMessage(&msg, NULL, 0, 0))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+}
+
 }
 

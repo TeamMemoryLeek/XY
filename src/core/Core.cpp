@@ -25,6 +25,11 @@ bool Core::shouldRun()
 	return true;
 }
 
+void Core::update()
+{
+	Window::pollEvents();
+}
+
 void Core::finalizeRendering()
 {
 	HBITMAP map = CreateBitmap(

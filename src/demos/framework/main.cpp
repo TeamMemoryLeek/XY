@@ -10,6 +10,7 @@ int main(int argc, char* argv[])
 
 	while (Core::update())
 	{
+		Canvas::clear(Color::magenta);
 		Canvas::drawRectangle(200, 200, 50, 50, Color::magenta);
 		Core::finalizeRendering();
 	}

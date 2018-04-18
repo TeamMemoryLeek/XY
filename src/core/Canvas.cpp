@@ -19,6 +19,14 @@ void Canvas::finalize()
 	delete _pixels;
 }
 
+void Canvas::clear(Color clearColor)
+{
+	for (int i = 0; i < _width * _height; i++)
+	{
+		_pixels[i] = colorByteToPixel(clearColor);
+	}
+}
+
 void Canvas::drawRectangle(int x, int y, int width, int height, Color color)
 {
 	for (int ypix = y; ypix < y + height; ypix++)

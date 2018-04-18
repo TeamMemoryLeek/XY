@@ -46,15 +46,15 @@ struct Colorf
 };
 
 // Coverts from a Colorf to a Color
-static Color colorFloatToByte(const Colorf& in);
+Color colorFloatToByte(const Colorf& in);
 
 // Converts from a Color to a Colorf
-static Colorf colorByteToFloat(const Color& in);
+Colorf colorByteToFloat(const Color& in);
 
 // Converts from a Color to a Pixel
-static Pixel colorByteToPixel(const Color& in);
+Pixel colorByteToPixel(const Color& in);
 
 // Converts from a Pixel to a Color
-static Color colorPixelToByte(const Pixel& in);
+Color colorPixelToByte(const Pixel& in);
 
 }

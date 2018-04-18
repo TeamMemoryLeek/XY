@@ -7,11 +7,20 @@ HWND Window::_hwnd;
 HDC Window::_hdc;
 uint32_t Window::_width;
 uint32_t Window::_height;
+void(*Window::keyCallback)(int action, int key) = nullptr;
 
-LRESULT CALLBACK wndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
+LRESULT CALLBACK Window::wndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {
 	switch (msg)
 	{
+	case WM_KEYDOWN:
+		if (keyCallback)
+			keyCallback(0, (int)wparam);
+		break;
+	case WM_KEYUP:
+		if (keyCallback)
+			keyCallback(1, (int)wparam);
+		break;
 	case WM_CLOSE:
 		DestroyWindow(hwnd);
 		PostQuitMessage(0);
@@ -21,7 +30,7 @@ LRESULT CALLBACK wndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 	return DefWindowProcW(hwnd, msg, wparam, lparam);
 }
 
-static ATOM registerClass()
+ATOM Window::registerClass()
 {
 	WNDCLASSEXW desc = {};
 	desc.cbSize        = sizeof(WNDCLASSEXW);
@@ -92,7 +101,7 @@ void Window::drawToWindow(HBITMAP& map, uint32_t width, uint32_t height)
 	HDC src = CreateCompatibleDC(_hdc);
 	SelectObject(src, map);
 
-	StretchBlt(
+	/*StretchBlt(
 		_hdc,
 		0,
 		0,
@@ -103,6 +112,17 @@ void Window::drawToWindow(HBITMAP& map, uint32_t width, uint32_t height)
 		0,
 		width,
 		height,
+		SRCCOPY);*/
+
+	BitBlt(
+		_hdc,
+		0,
+		0,
+		_width,
+		_height,
+		src,
+		0,
+		0,
 		SRCCOPY);
 
 	DeleteDC(src);

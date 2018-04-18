@@ -1,6 +1,7 @@
 #include "Core.h"
 #include "Window.h"
 #include "Canvas.h"
+#include "Keyboard.h"
 
 namespace xy
 {
@@ -18,6 +19,8 @@ void Core::initialize(
 	if (canvasHeight == 0)
 		canvasHeight = height;
 	Canvas::initialize(canvasWidth, canvasHeight);
+	Keyboard::initialize();
+	Window::keyCallback = Keyboard::keyCallback;
 }
 
 void Core::finalize()
@@ -28,6 +31,7 @@ void Core::finalize()
 
 bool Core::update()
 {
+	Keyboard::update();
 	return Window::pollEvents();
 }
 
@@ -41,6 +45,8 @@ void Core::finalizeRendering()
 		(void*)Canvas::_pixels);
 
 	Window::drawToWindow(map, Canvas::_width, Canvas::_height);
+
+	
 }
 
 }

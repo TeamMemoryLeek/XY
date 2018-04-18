@@ -9,6 +9,9 @@ namespace xy
 class Window
 {
 private:
+	static ATOM registerClass();
+	static LRESULT CALLBACK wndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
+
 	static void initialize(uint32_t width, uint32_t height, const std::wstring& title);
 	static void finalize();
 
@@ -20,6 +23,8 @@ private:
 
 	static uint32_t _width;
 	static uint32_t _height;
+
+	static void(*keyCallback)(int action, int key);
 
 	friend class Core;
 };

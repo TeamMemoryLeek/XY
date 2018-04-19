@@ -44,7 +44,19 @@ public:
 		int height, 
 		const Color& color);
 
+	// Draws and image at (x, y)
 	static void drawImage(int x, int y, Image* image);
+
+	// Draws a portion of an image defined by imx, imgy, width, 
+	// and height at (x, y)
+	static void drawImagePortion(
+		int x, 
+		int y, 
+		uint32_t imgx, 
+		uint32_t imgy, 
+		uint32_t width, 
+		uint32_t height, 
+		Image* image);
 };
 
 }

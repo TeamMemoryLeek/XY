@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 	const int WIDTH = 1280;
 	const int HEIGHT = 720;
 	Core::initialize(WIDTH, HEIGHT, L"XY Framework", WIDTH / 4, HEIGHT / 4);
-	Image* image = Core::loadImage("image.bmp");
+	Image* image = Core::loadImage("image2.bmp");
 
 	float x = 0.0f;
 	float y = 0.0f;
@@ -21,17 +21,17 @@ int main(int argc, char* argv[])
 	{
 		Canvas::clear(Color::black);
 		if (Keyboard::getKey('W')) 
-			y -= Time::deltaTime;
+			y -= Time::deltaTime * 32.0f;
 		if (Keyboard::getKey('S'))
-			y += Time::deltaTime;
+			y += Time::deltaTime * 32.0f;
 		if (Keyboard::getKey('A'))
-			x -= Time::deltaTime;
+			x -= Time::deltaTime * 32.0f;
 		if (Keyboard::getKey('D'))
-			x += Time::deltaTime;
+			x += Time::deltaTime * 32.0f;
 
 		printf("%f\n", 1.0f / Time::deltaTime);
 
-		Canvas::drawImage((int)(x * 32.0f), (int)(y * 32.0f), image);
+		Canvas::drawImagePortion((int)x, (int)y, 8, 8, 8, 8, image);
 
 		Core::finalizeRendering();
 	}

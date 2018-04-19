@@ -90,4 +90,38 @@ void Canvas::drawImage(int x, int y, Image* image)
 	}
 }
 
+void Canvas::drawImagePortion(
+	int x, 
+	int y, 
+	uint32_t imgx, 
+	uint32_t imgy,
+	uint32_t width,
+	uint32_t height,
+	Image* image)
+{
+	const int iw = image->getWidth();
+	const int ih = image->getHeight();
+
+	for (int ypix = imgy; ypix < imgy + height; ypix++)
+	{
+		if (ypix >= ih) continue;
+		int yy = y + ypix;
+		if (yy < 0) continue;
+		if ((uint32_t)yy >= _height) break;
+
+		for (int xpix = imgx; xpix < imgx + width; xpix++)
+		{
+			if (xpix >= iw) continue;
+			int xx = x + xpix;
+			if (xx < 0) continue;
+			if ((uint32_t)xx >= _width) break;
+
+			Pixel p = image->_pixels[xpix + ypix * iw];
+			if (p == colorByteToPixel(_transparentColor))
+				continue;
+			_pixels[xx + yy * _width] = p;
+		}
+	}
+}
+
 }

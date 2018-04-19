@@ -8,6 +8,7 @@ HDC Window::_hdc;
 uint32_t Window::_width;
 uint32_t Window::_height;
 void(*Window::keyCallback)(int action, int key) = nullptr;
+void(*Window::resizeCallback)(int wdith, int height) = nullptr;
 
 LRESULT CALLBACK Window::wndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {
@@ -20,6 +21,14 @@ LRESULT CALLBACK Window::wndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lpar
 	case WM_KEYUP:
 		if (keyCallback)
 			keyCallback(1, (int)wparam);
+		break;
+	case WM_SIZE:
+	{
+		_width = LOWORD(lparam);
+		_height = HIWORD(lparam);
+		if (resizeCallback)
+			resizeCallback(_width, _height);
+	}
 		break;
 	case WM_CLOSE:
 		DestroyWindow(hwnd);

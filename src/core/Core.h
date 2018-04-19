@@ -28,6 +28,9 @@ public:
 
 	static Image* loadImage(const std::string& path);
 	static void destroyImage(Image* image);
+
+private:
+	static void resizeCallback(int width, int height);
 };
 
 }

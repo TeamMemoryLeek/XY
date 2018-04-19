@@ -22,6 +22,7 @@ void Core::initialize(
 	Canvas::initialize(canvasWidth, canvasHeight);
 	Keyboard::initialize();
 	Window::keyCallback = Keyboard::keyCallback;
+	Window::resizeCallback = resizeCallback;
 	Time::initialize();
 }
 
@@ -63,6 +64,10 @@ Image* Core::loadImage(const std::string& path)
 void Core::destroyImage(Image* image)
 {
 	delete image;
+}
+
+void Core::resizeCallback(int width, int height)
+{
 }
 
 }

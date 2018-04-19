@@ -23,8 +23,6 @@ private:
 
 public:
 	// TODO: Implement drawing methods
-	// drawPixel
-	// drawRectangle
 	// drawCircle
 	// ...
 

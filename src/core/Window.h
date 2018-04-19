@@ -25,6 +25,7 @@ private:
 	static uint32_t _height;
 
 	static void(*keyCallback)(int action, int key);
+	static void(*resizeCallback)(int width, int height);
 
 	friend class Core;
 };

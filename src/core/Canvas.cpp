@@ -67,25 +67,25 @@ void Canvas::drawRectangle(
 
 void Canvas::drawImage(int x, int y, Image* image)
 {
-	const int width = image->getWidth();
-	const int height = image->getHeight();
+	const uint32_t iw = image->getWidth();
+	const uint32_t ih = image->getHeight();
 
-	for (int ypix = 0; ypix < height; ypix++)
+	const Pixel tc = colorByteToPixel(_transparentColor);
+
+	for (int iy = 0; iy < ih; iy++)
 	{
-		int yy = y + ypix;
-		if (yy < 0) continue;
-		if ((uint32_t)yy >= _height) break;
-
-		for (int xpix = 0; xpix < width; xpix++)
+		int py = iy + y;
+		if (py < 0) continue;
+		if (py >= _height) break;
+		for (int ix = 0; ix < iw; ix++)
 		{
-			int xx = x + xpix;
-			if (xx < 0) continue;
-			if ((uint32_t)xx >= _width) break;
-
-			Pixel p = image->_pixels[xpix + ypix * width];
-			if (p == colorByteToPixel(_transparentColor))
+			int px = ix + x;
+			if (px < 0) continue;
+			if (px >= _width) break;
+			Pixel p = image->_pixels[ix + iy * iw];
+			if (p == tc)
 				continue;
-			_pixels[xx + yy * _width] = p;
+			_pixels[px + py * _width] = p;
 		}
 	}
 }
@@ -102,21 +102,21 @@ void Canvas::drawImagePortion(
 	const int iw = image->getWidth();
 	const int ih = image->getHeight();
 
-	for (int ypix = imgy; ypix < imgy + height; ypix++)
+	for (int ix = imgy; ix < imgy + height; ix++)
 	{
-		if (ypix >= ih) continue;
-		int yy = y + ypix;
+		if (ix >= ih) continue;
+		int yy = y + ix;
 		if (yy < 0) continue;
 		if ((uint32_t)yy >= _height) break;
 
-		for (int xpix = imgx; xpix < imgx + width; xpix++)
+		for (int iy = imgx; iy < imgx + width; iy++)
 		{
-			if (xpix >= iw) continue;
-			int xx = x + xpix;
+			if (iy >= iw) continue;
+			int xx = x + iy;
 			if (xx < 0) continue;
 			if ((uint32_t)xx >= _width) break;
 
-			Pixel p = image->_pixels[xpix + ypix * iw];
+			Pixel p = image->_pixels[iy + ix * iw];
 			if (p == colorByteToPixel(_transparentColor))
 				continue;
 			_pixels[xx + yy * _width] = p;

@@ -8,6 +8,8 @@ namespace xy
 
 class Window
 {
+public:
+	static void setTitle(const std::wstring& title);
 private:
 	static ATOM registerClass();
 	static LRESULT CALLBACK wndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);

@@ -75,6 +75,7 @@ void Window::initialize(uint32_t width, uint32_t height, const std::wstring& tit
 
 	_hdc = GetDC(_hwnd);
 
+	setTitle(title);
 	ShowWindow(_hwnd, SW_SHOW);
 }
 
@@ -124,6 +125,11 @@ void Window::drawToWindow(HBITMAP& map, uint32_t width, uint32_t height)
 		SRCCOPY);
 
 	DeleteDC(src);
+}
+
+void Window::setTitle(const std::wstring& title)
+{
+	SetWindowTextW(_hwnd, title.c_str());
 }
 
 }

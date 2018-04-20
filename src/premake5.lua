@@ -10,6 +10,14 @@ t.project("Core")
 		"core/**.h",
 	}
 
+t.project("Audio")
+	kind "StaticLib"
+	targetname "XYAudio"
+	files {
+		"audio/**.cpp",
+		"audio/**.h",
+	}
+
 group "Demos"
 
 t.project("Framework")

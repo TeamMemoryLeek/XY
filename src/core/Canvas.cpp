@@ -71,16 +71,16 @@ void Canvas::drawImage(int x, int y, Image* image)
 	const uint32_t ih = image->getHeight();
 	const Pixel tc = colorByteToPixel(_transparentColor);
 
-	for (int iy = 0; iy < ih; iy++)
+	for (int iy = 0; iy < (int)ih; iy++)
 	{
 		int py = iy + y;
 		if (py < 0) continue;
-		if (py >= _height) break;
-		for (int ix = 0; ix < iw; ix++)
+		if (py >= (int)_height) break;
+		for (int ix = 0; ix < (int)iw; ix++)
 		{
 			int px = ix + x;
 			if (px < 0) continue;
-			if (px >= _width) break;
+			if (px >= (int)_width) break;
 			Pixel p = image->_pixels[ix + iy * iw];
 			if (p == tc)
 				continue;
@@ -102,14 +102,14 @@ void Canvas::drawImagePortion(
 	const int ih = image->getHeight();
 	const Pixel tc = colorByteToPixel(_transparentColor);
 
-	for (int ix = imgy; ix < imgy + height; ix++)
+	for (int ix = imgy; ix < (int)(imgy + height); ix++)
 	{
 		if (ix >= ih) continue;
 		int yy = y + ix;
 		if (yy < 0) continue;
 		if ((uint32_t)yy >= _height) break;
 
-		for (int iy = imgx; iy < imgx + width; iy++)
+		for (int iy = imgx; iy < (int)(imgx + width); iy++)
 		{
 			if (iy >= iw) continue;
 			int xx = x + iy;

@@ -13,11 +13,11 @@ static const int HEIGHT = 720;
 void handleTitle()
 {
 	using namespace xy;
-	static float timer = 0.0f;
+	static double timer = 0.0f;
 	timer += Time::deltaTime;
-	if (timer >= 1.0f)
+	if (timer >= 1.0)
 	{
-		timer -= 1.0f;
+		timer -= 1.0;
 		Window::setTitle(TITLE + std::to_wstring(1.0f / Time::deltaTime));
 	}
 }
@@ -28,21 +28,21 @@ int main(int argc, char* argv[])
 	Core::initialize(WIDTH, HEIGHT, TITLE, WIDTH / 4, HEIGHT / 4);
 	Image* image = Core::loadImage("image2.bmp");
 
-	float x = 0.0f;
-	float y = 0.0f;
+	double x = 0.0;
+	double y = 0.0;
 
 	while (Core::update())
 	{
 		handleTitle();
 		Canvas::clear(Color::black);
 		if (Keyboard::getKey('W')) 
-			y -= Time::deltaTime * 32.0f;
+			y -= Time::deltaTime * 32.0;
 		if (Keyboard::getKey('S'))
-			y += Time::deltaTime * 32.0f;
+			y += Time::deltaTime * 32.0;
 		if (Keyboard::getKey('A'))
-			x -= Time::deltaTime * 32.0f;
+			x -= Time::deltaTime * 32.0;
 		if (Keyboard::getKey('D'))
-			x += Time::deltaTime * 32.0f;
+			x += Time::deltaTime * 32.0;
 
 		Canvas::drawImagePortion((int)x, (int)y, 8, 8, 8, 8, image);
 

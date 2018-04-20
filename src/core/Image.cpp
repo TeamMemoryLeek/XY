@@ -22,8 +22,8 @@ void Image::loadFromFile(const std::string& path)
 	unsigned long imageSize;
 	unsigned char* data;
 
-	FILE* file = fopen(path.c_str(), "rb");
-	if (!file)
+	FILE* file;
+	if (fopen_s(&file, path.c_str(), "rb") != 0)
 	{
 		assert(false);
 		// TODO: Error
@@ -53,13 +53,13 @@ void Image::loadFromFile(const std::string& path)
 
 	long i = 0;
 	// Iterate rows backwards since bitmaps are stored that way
-	for (int32_t y = _height - 1; y >= 0; y--)
+	for (int y = (int)_height - 1; y >= 0; y--)
 	{
-		for (int32_t x = 0; x < _width; x++)
+		for (int x = 0; x < (int)_width; x++)
 		{
-			unsigned char b = data[i + 0];
-			unsigned char g = data[i + 1];
-			unsigned char r = data[i + 2];
+			uint8_t b = data[i + 0];
+			uint8_t g = data[i + 1];
+			uint8_t r = data[i + 2];
 			_pixels[x + y * _width] = 255 << 24 | r << 16 | g << 8 | b;
 			i += 3;
 		}

@@ -2,6 +2,12 @@
 #include <string>
 #include <vector>
 
+enum class AudioFormat
+{
+	UNKNOWN = 0,
+	WAVE,
+};
+
 enum class AudioCompression
 {
 	UNCOMPRESSED_PCM,
@@ -27,6 +33,7 @@ private:
 	void decodeRiff(FILE* file);
 	void decodeRiffWave(FILE* file);
 
+	AudioFormat			_format;
 	AudioCompression	_compression;
 	uint32_t			_numChannels;
 	uint32_t			_sampleRate;

@@ -46,6 +46,7 @@ void AudioDecoder::decodeRiff(FILE* file)
 	{
 	case 0x57415645: // "WAVE"
 		decodeRiffWave(file);
+		_format = AudioFormat::WAVE;
 		break;
 	default: assert(false);
 	}

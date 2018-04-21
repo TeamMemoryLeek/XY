@@ -29,5 +29,9 @@ t.project("Framework")
 		"demos/framework/**.h",
 	}
 	links {
+		-- Project references
+		"Audio",
 		"Core",
+		-- Static libraries
+		"Xaudio2",
 	}

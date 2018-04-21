@@ -2,8 +2,17 @@
 
 #include <assert.h>
 
-AudioDecoder::AudioDecoder(const std::string& filename)
-	: _soundDescription{}
+// #TODO: Fix byte ordering on ID constants. currently little endian.
+
+AudioDecoder::AudioDecoder(const std::string& filename, uint8_t** outData)
+: _format(AudioFormat::UNKNOWN)
+, _compression(AudioCompression::UNKNOWN)
+, _numChannels(0)
+, _sampleRate(0)
+, _byteRate(0)
+, _blockAlign(0)
+, _bitsPerSample(0)
+, _data_size(0)
 {
 	FILE* file;
 	assert(fopen_s(&file, filename.c_str(), "rb") == 0);
@@ -15,10 +24,10 @@ AudioDecoder::AudioDecoder(const std::string& filename)
 		sizeof(uint32_t),
 		sizeof(uint32_t),
 		1,
-		file) == sizeof(uint32_t));
+		file) == 1);
 	switch (signature)
 	{
-	case 0x52494646: // "RIFF"
+	case 0x46464952: // "RIFF"
 		decodeRiff(file, outData);
 		break;
 	default: assert(false);
@@ -41,10 +50,10 @@ void AudioDecoder::decodeRiff(FILE* file, uint8_t** outData)
 		sizeof(Header),
 		sizeof(Header),
 		1,
-		file) == sizeof(Header));
+		file) == 1);
 	switch (header.id)
 	{
-	case 0x57415645: // "WAVE"
+	case 0x45564157: // "WAVE"
 		_format = AudioFormat::WAVE;
 		decodeRiffWave(file, outData);
 		break;
@@ -61,11 +70,11 @@ void AudioDecoder::decodeRiffWave(FILE* file, uint8_t** outData)
 	} header;
 
 	while (fread_s(&header, sizeof(ChunkHeader), sizeof(ChunkHeader), 1, file)
-		== sizeof(ChunkHeader))
+		== 1)
 	{
 		switch (header.id)
 		{
-		case 0x666D7420: // "fmt "
+		case 0x20746D66: // "fmt "
 		{
 			struct FormatChunk
 			{
@@ -82,7 +91,7 @@ void AudioDecoder::decodeRiffWave(FILE* file, uint8_t** outData)
 				sizeof(FormatChunk),
 				sizeof(FormatChunk),
 				1,
-				file) == sizeof(FormatChunk));
+				file) == 1);
 
 			_compression	= (formatChunk.audioFormat == 1) ?
 				AudioCompression::UNCOMPRESSED_PCM :
@@ -95,7 +104,7 @@ void AudioDecoder::decodeRiffWave(FILE* file, uint8_t** outData)
 
 			break;
 		}
-		case 0x64617461: // "data"
+		case 0x61746164: // "data"
 		{
 			_data_size	= header.size;
 			*outData	= new uint8_t[header.size];

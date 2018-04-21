@@ -10,6 +10,7 @@ enum class AudioFormat
 
 enum class AudioCompression
 {
+	UNKNOWN = 0,
 	UNCOMPRESSED_PCM,
 	COMPRESSED,
 };

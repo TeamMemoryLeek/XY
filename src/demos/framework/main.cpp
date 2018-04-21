@@ -1,3 +1,5 @@
+#include <audio/SoundItf.h>
+#include <audio/XAudio2/XAudio2Device.h>
 #include <core/Core.h>
 #include <core/Canvas.h>
 #include <core/Color.h>
@@ -27,6 +29,11 @@ int main(int argc, char* argv[])
 	using namespace xy;
 	Core::initialize(WIDTH, HEIGHT, TITLE, WIDTH / 4, HEIGHT / 4);
 	Image* image = Core::loadImage("image2.bmp");
+
+	XAudio2Device audioDevice;
+	SoundItf* crankSound = audioDevice.loadSound("crank.wav");
+
+	crankSound->play();
 
 	double x = 0.0;
 	double y = 0.0;

@@ -36,4 +36,5 @@ t.project("Framework")
 		"Xaudio2",
 		"Dsound",
 		"dxguid",
+		"Winmm",
 	}

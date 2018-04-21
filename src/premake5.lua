@@ -34,4 +34,6 @@ t.project("Framework")
 		"Core",
 		-- Static libraries
 		"Xaudio2",
+		"Dsound",
+		"dxguid",
 	}

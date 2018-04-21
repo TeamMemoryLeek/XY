@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+#include <Windows.h>
+
 #include "audio/SoundItf.h"
 
 class WinMMSound : public SoundItf
@@ -12,5 +14,5 @@ public:
 	void stop() override;
 
 private:
-	std::string _filename;
+	std::string _alias;
 };

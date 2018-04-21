@@ -1,13 +1,15 @@
 #include "WinMMSound.h"
 
-#include <Windows.h>
+#include <assert.h>
 
 void WinMMSound::play()
 {
-	PlaySoundA(_filename.c_str(), nullptr, SND_FILENAME | SND_ASYNC);
+	const std::string cmd = "play " + _alias;
+	assert(mciSendStringA(cmd.c_str(), nullptr, 0, nullptr) == 0);
 }
 
 void WinMMSound::stop()
 {
-	PlaySoundA(nullptr, nullptr, 0);
+	const std::string cmd = "stop " + _alias;
+	assert(mciSendStringA(cmd.c_str(), nullptr, 0, nullptr) == 0);
 }

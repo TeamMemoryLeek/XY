@@ -26,7 +26,7 @@ public:
 	uint32_t			getByteRate()		const { return _byteRate; }
 	uint32_t			getBlockAlign()		const { return _blockAlign; }
 	uint32_t			getBitsPerSample()	const { return _bitsPerSample; }
-	size_t				getDataSize()		const { return _data_size; }
+	size_t				getDataSize()		const { return _dataSize; }
 
 private:
 	void decodeRiff(FILE* file, uint8_t** outData);
@@ -39,5 +39,5 @@ private:
 	uint32_t			_byteRate;
 	uint32_t			_blockAlign;
 	uint32_t			_bitsPerSample;
-	size_t				_data_size;
+	size_t				_dataSize;
 };

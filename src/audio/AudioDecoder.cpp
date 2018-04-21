@@ -12,7 +12,7 @@ AudioDecoder::AudioDecoder(const std::string& filename, uint8_t** outData)
 , _byteRate(0)
 , _blockAlign(0)
 , _bitsPerSample(0)
-, _data_size(0)
+, _dataSize(0)
 {
 	FILE* file;
 	assert(fopen_s(&file, filename.c_str(), "rb") == 0);
@@ -106,15 +106,15 @@ void AudioDecoder::decodeRiffWave(FILE* file, uint8_t** outData)
 		}
 		case 0x61746164: // "data"
 		{
-			_data_size	= header.size;
+			_dataSize	= header.size;
 			*outData	= new uint8_t[header.size];
 
 			assert(fread_s(
 				*outData,
-				_data_size,
+				_dataSize,
 				sizeof(uint8_t),
-				_data_size,
-				file) == _data_size);
+				_dataSize,
+				file) == _dataSize);
 
 			break;
 		}

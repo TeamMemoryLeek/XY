@@ -19,7 +19,7 @@ AudioDecoder::AudioDecoder(const std::string& filename)
 	switch (signature)
 	{
 	case 0x52494646: // "RIFF"
-		decodeRiff(file);
+		decodeRiff(file, outData);
 		break;
 	default: assert(false);
 	}
@@ -27,7 +27,7 @@ AudioDecoder::AudioDecoder(const std::string& filename)
 	fclose(file);
 }
 
-void AudioDecoder::decodeRiff(FILE* file)
+void AudioDecoder::decodeRiff(FILE* file, uint8_t** outData)
 {
 	struct Header
 	{
@@ -45,14 +45,14 @@ void AudioDecoder::decodeRiff(FILE* file)
 	switch (header.id)
 	{
 	case 0x57415645: // "WAVE"
-		decodeRiffWave(file);
 		_format = AudioFormat::WAVE;
+		decodeRiffWave(file, outData);
 		break;
 	default: assert(false);
 	}
 }
 
-void AudioDecoder::decodeRiffWave(FILE* file)
+void AudioDecoder::decodeRiffWave(FILE* file, uint8_t** outData)
 {
 	struct ChunkHeader
 	{
@@ -98,10 +98,10 @@ void AudioDecoder::decodeRiffWave(FILE* file)
 		case 0x64617461: // "data"
 		{
 			_data_size	= header.size;
-			_data		= new uint8_t[header.size];
+			*outData	= new uint8_t[header.size];
 
 			assert(fread_s(
-				&_data,
+				*outData,
 				_data_size,
 				sizeof(uint8_t),
 				_data_size,

@@ -17,7 +17,7 @@ public:
 	void stop() override;
 
 private:
-	IXAudio2SourceVoice* _sourceVoice;
-	uint8_t*			_buffer;
-	size_t				_bufferSize;
+	IXAudio2SourceVoice*	_sourceVoice;
+	uint8_t*				_buffer;
+	size_t					_bufferSize;
 };

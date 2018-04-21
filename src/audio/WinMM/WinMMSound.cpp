@@ -4,12 +4,22 @@
 
 void WinMMSound::play()
 {
-	const std::string cmd = "play " + _alias;
-	assert(mciSendStringA(cmd.c_str(), nullptr, 0, nullptr) == 0);
+	MCI_PLAY_PARMS playParms = {};
+
+	assert(mciSendCommandA(
+		_mciDeviceId,
+		MCI_PLAY,
+		MCI_NOTIFY,
+		(DWORD_PTR)&playParms) == 0);
 }
 
 void WinMMSound::stop()
 {
-	const std::string cmd = "stop " + _alias;
-	assert(mciSendStringA(cmd.c_str(), nullptr, 0, nullptr) == 0);
+	MCI_GENERIC_PARMS stopParms = {};
+
+	assert(mciSendCommandA(
+		_mciDeviceId,
+		MCI_STOP,
+		MCI_NOTIFY,
+		(DWORD_PTR)&stopParms) == 0);
 }

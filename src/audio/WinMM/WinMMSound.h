@@ -14,5 +14,5 @@ public:
 	void stop() override;
 
 private:
-	std::string _alias;
+	MCIDEVICEID _mciDeviceId;
 };

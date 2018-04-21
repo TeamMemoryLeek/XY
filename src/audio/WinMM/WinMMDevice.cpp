@@ -8,11 +8,16 @@ SoundItf* WinMMDevice::loadSound(const std::string& filename)
 {
 	WinMMSound* sound	= new WinMMSound;
 
-	// Open
-	const std::string alias		= "Alias:" + filename;
-	const std::string openCmd	= "open \"" + filename + "\" alias " + alias;
-	assert(mciSendStringA(openCmd.c_str(), nullptr, 0, nullptr) == 0);
+	MCI_OPEN_PARMSA openParms	= {};
+	openParms.lpstrDeviceType	= "waveaudio";
+	openParms.lpstrElementName	= filename.c_str();
 
-	sound->_alias = alias;
+	assert(mciSendCommandA(
+		0,
+		MCI_OPEN,
+		MCI_OPEN_TYPE | MCI_OPEN_ELEMENT,
+		(DWORD_PTR)&openParms) == 0);
+
+	sound->_mciDeviceId = openParms.wDeviceID;
 	return sound;
 }

@@ -12,10 +12,10 @@ XY is a lightweight 2D-library for C++. It's primarily made to be a simple libra
 - Low resolution rendering
 - Keyboard input
 - BMP loading and image rendering
+- WAV IO and playback
 
 #### Planned
 - Z-buffer rendering
-- WAV IO and playback
 - Mouse input
 - 'Sprite' rotation and scaling
 
